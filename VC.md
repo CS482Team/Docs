@@ -37,7 +37,7 @@ git commit -m "#15 My commit message"
 If you accidentally committed with the wrong message:
 ```bash
 git commit --amend -m "#15 Replacement commit message"
-git push # And if you had already pushed the other commit, instead use: git push --force-with-lease
+# If you had already pushed the bad commit, you will need to use: git push --force-with-lease
 ```
 
 ## Pull Requests
