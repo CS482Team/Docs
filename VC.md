@@ -2,11 +2,11 @@
 
 ## Branches
 
-| Branch | Updated when... |
-| - | - |
-| main | sprint ends |
-| develop | feature/fix done |
-| feature/fix | whenever you want |
+| Branch | Updated when... | Merge Requirements |
+| - | - | - |
+| main | sprint ends | 2 PR Approvals |
+| develop | feature/fix done | 1 PR Approval |
+| feature/fix | whenever you want | N/A |
 
 ## New Branch
 
@@ -31,13 +31,13 @@ fix/{issue-number}-{whatever-you-want}     # fix/14-remove-sort-error
 
 Include the issue number at the start of your commit message:
 ```bash
-git commit -m "#15 Add assets folder"
+git commit -m "#15 My commit message"
 ```
 
-If you already wrote the commit message and forgot to add the issue number:
+If you accidentally committed with the wrong message:
 ```bash
-git commit --amend -m "#15 Add assets folder
-git push # If you ALSO already pushed to remote branch, instead use: git push --force-with-lease
+git commit --amend -m "#15 Replacement commit message"
+git push # And if you had already pushed the other commit, instead use: git push --force-with-lease
 ```
 
 ## Pull Requests
