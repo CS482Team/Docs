@@ -5,4 +5,6 @@
 
 ### [Basic Figma Mockup](https://www.figma.com/make/Y2EYGICv8gAiyVBhedqoy0/Red-Themed-Poker-Table-Mockups?t=OybtH3jOgOu9kHAg-1)
 
-### [Poker solver Library Repo](https://github.com/goldfire/pokersolver)
+### [Poker Solver Library Repo](https://github.com/goldfire/pokersolver)
+
+### [Design WIP](https://studentsloyola-my.sharepoint.com/:w:/r/personal/camccollim_loyola_edu/_layouts/15/Doc.aspx?sourcedoc=%7B40220FBE-0438-4BFE-B6E5-8E22BF7345D6%7D&file=Design.docx&action=default&mobileredirect=true&wdwpf=c)
