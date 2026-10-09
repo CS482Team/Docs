@@ -100,17 +100,25 @@ S2 & Story Example 2 & 2 & As a user, I want to write a user story example, so t
 % Reminder: Comment out the [bracketed instructions] as you finish subsections
 
 \subsection{Architecture}
-[Which type of software architecture are you team following? Layered architecture, MVC, other? What are the main modules for your software?]
-[Main modules are not the same as Layers. If you adopted any form of layered architecture (MVC included), then your layers already group components based on responsibility. Therefore, for modules, think about semantically related components. For example, in a parking lot, I could have a User, Payment, Parking (Vehicles), Contact/Issues modules.]
+We will use the MVC architecture to structure this application. Two servers will be hosted for the frontend and backend respectively. The frontend will serve the HTML/CSS/JS which includes graphics, menus, buttons, animations, and interface logic. The backend will be the source of truth by validating requests, updating game states, and interacting with the database. This should help with persistent data and real-time multiplayer interactions. The backend separates the game engine from the network and database layers to ensure that the card mechanics for 5-card poker can be unit tested. The main modular components for the application include Player, Profile, Admin, Lobby, Room, Chat, Game State, Bot, Wallet, Shop, History, Ads.
 
 \subsection{Diagrams}
 [CS482, on sprints/iterations 2-3, you need to create and update a diagram (check Iteration 2-3 assignment for which type of diagram). On CS496, since before sprint/iteration 1, you should have a class diagram and keep it up-to-date. In CS496, if your class diagram changes at each sprint, then create a Class Diagram subsection for the sprints, and show the changes; while keeping the one here the most up-to-date version. ]
 
 \subsection{Technology}
-[ Which technologies are you going to use to implement your project? This should include the chosen programming language, main frameworks/libraries, and database or data storage. Testing framework is essential here as well.]
+For our programming language, we chose TypeScript for both the front and back end because its strict type enforcement makes unit testing and error checking easier. For our front end, we will use React bootstrapped with Next.js (written in TypeScript) for our UI, which has built-in file-based routing. For our backend, we will use Node.js with Express and a REST API for accounts, friends, tables, and adverts compiled from typescript. 
+For real-time communication, we will use Socket.IO to manage Live gameplay updates. Each poker table is a room, and Socket.IO’s built-in reconnection handles dropped players. It also comes shipped with its own TypeScript types. 
+For our database, we chose Supabase, a Postgres-based database that provides relational storage for profiles, friendships, tables, hand history, and adverts. For authentication, we will use Supabase Auth for account creation, login, and password handling(server verifies user tokens).
+For hand evaluation, we decided to use the Pokersolver library. We’ve tested its ability to rank hands to determine winners(with ties at showdown), and we verified its ability to handle rank, tie, wheel straight, and kicker cases.
+For our configuration, we will use dotenv to keep API keys and secrets out of the source code. For our version control, we decided to use Git and GitHub, as it will allow us to create feature branches and pull request reviews.
+For our UI sketches and mockups we decided to use Figma as it provides a high flexibility.
+For our testing, we will use Jest to run our tests for both the front and the back end, with the React Testing Library for components and Supertest for REST routes. We’ll test the Socket.IO behavior by connecting test clients to a test server instance, and we’ll use Jest’s built-in coverage report. For code quality tools we will use ESLint and Prettier. 
+
 
 \subsection{Coding Standards}
-[Are your team going to follow any coding standards? For example, using a naming convention for Database tables (like only singular lowercase names). Another example, only allowing code with unit tests and above 60\% coverage to be committed (good convention since testing is going to be evaluated). If you need inspiration to define your coding standards, the Extreme Programming approach has a set of coding, design, and test rules.]
+Each member of the group must keep code simple and comment frequently to clarify our code. All group members will meet at least once per sprint. Each sprint we will use the following merge flow: feature -> develop (requires 1 PR)-> main (requires 2 PRs). Singular capital words will be used for code files. Snake case and singular naming will be used for DB tables and columns.  No restrictions apply while working on your own branch in the feature branch.
+For each merge to develop, 100% of unit tests must pass and there must be at least 80% code coverage for these tests. The unit test coverage will be visible through CI/CD workflows set up on GitHub actions. When a bug is found in the code, tests should be created for them to avoid regression in the future. Each test must have a purpose.
+
 
 \subsection{Data}
 [What is the main structure of your data? In SQL-like databases, this would be the planning of the main tables, their attributes, and interactions with other tables (basically an ER diagram). In NoSQL databases, this would be the main collections and general attributes of the JSON you will store in each collection.]
