@@ -6,6 +6,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{longtable}
 \usepackage{subcaption}
+\usepackage{float}
 
 %%%%% title information %%%%%%
 \title{CS482 Software Project: \\ 
@@ -123,9 +124,9 @@ Each group member will add comments to clarify their code when appropriate. The 
 \subsection{Data}
 The database is built around players and the games they play. The user table is the center, and each user has a username, a chip balance, and a few things like a daily reward streak. Players sit at a table, which is a game room with a host, a buy-in, a max number of players, and betting rules. The \textbf{table\_players} table connects users to tables and tracks which seat they have and how many chips they brought. Each round of play at a table is saved in the match table, which stores the pot and who won. \textbf{match\_players} lists everyone in that match and how much they won or lost, and \textbf{match\_log} records every move they made, like bet, call, raise, fold, check, or draw, so a game can be replayed later. Around this core are the extras: friendship links two users together, \textbf{shop\_item} and \textbf{user\_inventory} let players buy and equip things with chips, advert and \textbf{ad\_claim} let players earn chips by watching ads, and event handles special bonuses. \textbf{chat\_message} stores table chat, \textbf{support\_ticket} stores help requests, and \textbf{balance\_log} keeps a history of every chip change so nothing gets lost.
 
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
-  \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{ER Diagram.png}}
+  \makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{ER Diagram Cropped.png}}
   \caption{ER diagram of Database Schema}
   \label{fig:ER}
 \end{figure}
@@ -175,21 +176,26 @@ All pages will have a mature red theme. On the gameplay page, a red oval in the 
 
 \vspace{0.5em}
 \noindent
-\includegraphics[width=0.245\textwidth]{Admin.png}\hfill%
-\includegraphics[width=0.245\textwidth]{Bet.png}\hfill%
-\includegraphics[width=0.245\textwidth]{Discard.png}\hfill%
-\includegraphics[width=0.245\textwidth]{Leaderboard.png}
-
+\includegraphics[width=0.49\textwidth]{Admin.png}\hfill
+\includegraphics[width=0.49\textwidth]{Bet.png}
 \vspace{0.5em}
 
 \noindent
-\includegraphics[width=0.245\textwidth]{Lobby.png}\hfill%
-\includegraphics[width=0.245\textwidth]{New Table.png}\hfill%
-\includegraphics[width=0.245\textwidth]{Profile.png}\hfill%
-\includegraphics[width=0.245\textwidth]{Showdown.png}
+\includegraphics[width=0.49\textwidth]{Discard.png}\hfill
+\includegraphics[width=0.49\textwidth]{Leaderboard.png}
+\vspace{0.5em}
+
+\noindent
+\includegraphics[width=0.49\textwidth]{Lobby.png}\hfill
+\includegraphics[width=0.49\textwidth]{New Table.png}
+\vspace{0.5em}
+
+\noindent
+\includegraphics[width=0.49\textwidth]{Profile.png}\hfill
+\includegraphics[width=0.49\textwidth]{Showdown.png}
 
 \vspace{0.5em}
-\includegraphics[width=0.5\textwidth]{UI Diagram.pdf}
+\includegraphics[width=1\textwidth]{UI Diagram.pdf}
 \section{Iterations}
 
 \subsection{Iteration Planning}
