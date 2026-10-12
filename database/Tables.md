@@ -1,5 +1,8 @@
 ## Table `user`
 
+- S6, S7, S8, S9, S10, S18, S19, S20, S23, S27
+- Permanent account record
+
 ### Columns
 
 | Name | Type | Constraints |
@@ -18,6 +21,9 @@
 
 ## Table `friendship`
 
+- S28
+- Permanent relationship record
+
 ### Columns
 
 | Name | Type | Constraints |
@@ -30,6 +36,9 @@
 | `updated_at` | `timestamptz` |  |
 
 ## Table `table`
+
+- S1, S5, S12, S13, S14
+- Holds the current state and settings of an open room
 
 ### Columns
 
@@ -51,6 +60,9 @@
 
 ## Table `table_players`
 
+- S1, S2, S14
+- Holds who is seated now and their current stack
+
 ### Columns
 
 | Name | Type | Constraints |
@@ -62,6 +74,9 @@
 | `joined_at` | `timestamptz` |  |
 
 ## Table `match`
+
+- S1, S4, S11, S25
+- Open while a hand is in progress, permanent history after
 
 ### Columns
 
@@ -78,6 +93,9 @@
 
 ## Table `match_log`
 
+- S2, S3, S25
+- Append-only action history
+
 ### Columns
 
 | Name | Type | Constraints |
@@ -92,6 +110,9 @@
 | `seat_number` | `int4` |  Nullable |
 
 ## Table `advert`
+
+- S17, S29
+- Admin-managed ad content
 
 ### Columns
 
@@ -108,6 +129,9 @@
 
 ## Table `shop_item`
 
+- S21
+- Catalog of purchasable items
+
 ### Columns
 
 | Name | Type | Constraints |
@@ -121,6 +145,9 @@
 
 ## Table `user_inventory`
 
+- S21
+- Permanent record of owned items
+
 ### Columns
 
 | Name | Type | Constraints |
@@ -131,6 +158,9 @@
 | `is_equipped` | `bool` |  |
 
 ## Table `match_players`
+
+- S1, S4, S5, S11, S25
+- Permanent per-hand results
 
 ### Columns
 
@@ -147,6 +177,9 @@
 
 ## Table `event`
 
+- S22
+- Admin-managed promotion config
+
 ### Columns
 
 | Name | Type | Constraints |
@@ -160,6 +193,9 @@
 
 ## Table `chat_message`
 
+- S15
+- Live chat feed for a table
+
 ### Columns
 
 | Name | Type | Constraints |
@@ -171,6 +207,9 @@
 | `created_at` | `timestamptz` |  |
 
 ## Table `support_ticket`
+
+- S16
+- Permanent record of player reports
 
 ### Columns
 
@@ -185,6 +224,9 @@
 
 ## Table `ad_claim`
 
+- S17
+- Audit log of ad reward claims
+
 ### Columns
 
 | Name | Type | Constraints |
@@ -195,6 +237,9 @@
 | `claimed_at` | `timestamptz` |  |
 
 ## Table `balance_log`
+
+- S26
+- Audit log of balance changes
 
 ### Columns
 
@@ -220,4 +265,3 @@
 ### `match_phase`
 
 `antes` | `bet-1` | `draw` | `bet-2` | `showdown`
-
