@@ -6,7 +6,7 @@
 |------|------|-------------|
 | `id` | `uuid` | Primary |
 | `username` | `text` |  Unique |
-| `chip_balance` | `int4` |  |
+| `balance` | `int4` |  |
 | `role` | `int4` |  |
 | `created_at` | `timestamptz` |  |
 | `last_daily_reward_at` | `timestamptz` |  Nullable |
@@ -38,7 +38,6 @@
 | `id` | `uuid` | Primary |
 | `name` | `text` |  |
 | `host_id` | `uuid` |  Nullable |
-| `variant` | `text` |  |
 | `max_players` | `int4` |  |
 | `buy_in` | `int4` |  |
 | `status` | `int4` |  |

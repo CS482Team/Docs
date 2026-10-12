@@ -57,41 +57,66 @@
 \section{Requirements}
 
 \subsection{Non-Functional Requirements}
-[Non-functional requirements are just as important as functional requirements. Dont forget to specify them.]\\
-
 Table~\ref{tab:nfr} presents the NFRs for this software project.
 
 \begin{table}[h!]
 \centering
-\begin{tabular}{c l c p{9cm}}
+\begin{tabular}{c l l p{8.5cm}}
 \hline
 \textbf{ID} & \textbf{NFR Title} & \textbf{Category} & \textbf{Description} \\
 \hline
-NFR1 & NFR Example 1 & Usability & Description of the NFR (it does not follow a user story template) \\ \hline
-NFR2 & NFR Example 2 & Security & Description of the NFR (it does not follow a user story template) \\ \hline
+1 & Aesthetics & Design & The color scheme is red and assets used for backgrounds, buttons, cards, and other elements are for a mature audience. \\ \hline
+3 & Time Outs & Gameplay & System automatically kicks users taking too long on their turn and deletes inactive rooms. \\ \hline
+4 & Money & Reliability & The system accurately processes and updates balances and payouts without loss (including during multiplier events). \\ \hline
+6 & Rate Limits & Security & System has rate limits for sensitive actions like guest sign in, lobby creation, clicking ads, sending messages. \\ \hline
+7 & Availability & Reliability & The site is hosted to be highly available for play at most times. \\ \hline
+8 & Mobile & Gameplay & The site and game are functional on mobile devices. \\ \hline
+10 & Sound & Design & System plays music and sound effects for game interactions and events. \\ \hline
 \end{tabular}
 \caption{Non-Functional requirements}\label{tab:nfr}
 \end{table}
 
-
 \subsection{Functional Requirements (User Stories)}
-[In CS482, all functional requirements are written as User Stories. In CS496, some projects may use a different template to write the requirements. The table below is an example of writing the Stories. Adapt accordingly to different templates or if you want to display more info.]\\
-
 Table~\ref{tab:functional-req} presents the functional requirements for this software project.
 
 \begin{longtable}[h]{c l c p{10cm}}
 \hline
 \textbf{ID} & \textbf{Story Title} & \textbf{Points} & \textbf{Description} \\
 \hline
-S1 & Story Example 1 & 5 & As a user, I want to write a user story example, so that people will understand them. \\ \hline
-S2 & Story Example 2 & 2 & As a user, I want to write a user story example, so that people will understand them. \\ \hline
+S1 & Game Initialization & 2 & As an Player, I want us to be dealt 5 cards after putting our antes into the pot, so that the first round can begin. \\ \hline
+S2 & Game Betting & 2 & As a/an Player, I want to be able to Check, Call, Bet/Raise, or Fold, so that I can make a decision during a betting round. \\ \hline
+S3 & Game Card Draw & 2 & As a/an Player, I want to select between 0 and 5 cards to discard, so that I can replace them with new cards from the deck during the draw round. \\ \hline
+S4 & Game Ending & 2 & As a/an Player, I want all player hands to be compared after the final betting round, so that the pot is awarded to the winner. \\ \hline
+S5 & Bot Play & 5 & As a/an Player, I want to add bots to the room, so that I can play 5 Card Draw Poker when not enough people are online. \\ \hline
+S6 & Sign Up & 2 & As a/an Player, I want to create an account, so that I can save my progress. \\ \hline
+S7 & Sign In / Sign Out & 1 & As a/an Player, I want to sign in / sign out to my account, so that I can pick up where I left off. \\ \hline
+S8 & User Settings & 3 & As a/an Player, I want to update my own profile, so that I can customize how I appear to others. \\ \hline
+S9 & Guest Player & 1 & As a/an Player, I want to login as a guest, so that I can play without an account. \\ \hline
+S10 & View Balance & 1 & As a/an Player, I want to view my balance, so that I can know how much I have won. \\ \hline
+S11 & View My History & 2 & As a/an Player, I want to see my game history, so that I can see my performance over time. \\ \hline
+S12 & Room Creation & 2 & As a/an Player, I want to create a room, so that I can play with others. \\ \hline
+S13 & Room Settings & 3 & As a/an Admin, I want to adjust room settings, so that I can change the max players, set minimum bets, and configure raise per X rounds. \\ \hline
+S14 & Room Joining & 2 & As a/an Player, I want to join a room, so that I can play with others. \\ \hline
+S15 & Chat Feature & 5 & As a/an Player, I want to be able to message in a chat room, so that I can communicate with other players during a game. \\ \hline
+S16 & Contact Admin & 1 & As a/an Player, I want to message the admin, so that I can report any problems. \\ \hline
+S17 & Advertisements & 1 & As a/an Player, I want to click on ads, so that I can get more in game money. \\ \hline
+S18 & Leaderboard & 1 & As a/an Player, I want to see a leaderboard of the top balance players, so that I can see where I stand. \\ \hline
+S19 & Daily Rewards & 1 & As a/an Player, I want to get daily rewards, so that I have a reason to log in every day. \\ \hline
+S20 & Rank Badge & 1 & As a/an Player, I want to receive a badge when I reach the top of the leaderboard, so that my profile is distinguished as a top player. \\ \hline
+S21 & Cosmetic Shop & 5 & As a/an Player, I want to buy cosmetic items, so that I have something to spend my in game money on. \\ \hline
+S22 & Promotional Event & 1 & As a/an Admin, I want to trigger special events with chip multipliers, so that I can boost player engagement. \\ \hline
+S23 & Remove Users & 2 & As a/an Admin, I want to delete a user, so that I can remove malicious players. \\ \hline
+S24 & Reset Password & 1 & As a/an Admin, I want to reset a user's password, so that a player is not locked out if they forget it. \\ \hline
+S25 & View All Profiles & 2 & As a/an Admin, I want to see all player game histories, so that I can inspect games for problems. \\ \hline
+S26 & Modify Chips & 1 & As a/an Admin, I want to modify a player's balance, so that I can reimburse them for problems. \\ \hline
+S27 & Adjust Volume & 1 & As a/an Player, I want to change volume levels for music and sound effects, so that I can choose what I hear. \\ \hline
+S28 & Friends List & 3 & As a/an Player, I want to have a friends list that I can manage, so that I can play with my friends again, add them, or remove them. \\ \hline
+S29 & Advertisements & 1 & As a/an Admin, I want to create ads, so that players can have ads to click on to get in game money. \\ \hline
 
-\multicolumn{2}{r}{\bf Total: } & 80 & \\ \hline
-
-
-
-\caption{Functional requirements as User Stories.}\label{tab:functional-req}
+\multicolumn{2}{r}{\bf Total: } & 57 & \\ \hline
+\caption{Functional Requirements (User Stories)}\label{tab:functional-req}
 \end{longtable}
+
 
 \subsection{AI Analysis on Functional Requirements}
 [ After you receive your revised User Stories in CS482, or after your first delivery of Stories on CS496, you should use AI as a senior software engineer to help you find any missing or hidden requirements.]
@@ -126,7 +151,7 @@ The database is built around players and the games they play. The user table is 
 
 \begin{figure}[H]
   \centering
-  \makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{ER Diagram Cropped.png}}
+  \makebox[\textwidth][c]{\includegraphics[width=0.6\textwidth]{database/ER Diagram Cropped.png}}
   \caption{ER diagram of Database Schema}
   \label{fig:ER}
 \end{figure}
@@ -138,11 +163,11 @@ The database is built around players and the games they play. The user table is 
 \hline
 \textbf{Table} & \textbf{Essential Columns} \\
 \hline
-\texttt{user} & \texttt{id, username, chip\_balance, role, current\_streak} \\
+\texttt{user} & \texttt{id, username, balance, role, current\_streak} \\
 \hline
 \texttt{friendship} & \texttt{id, sender\_id, receiver\_id, status} \\
 \hline
-\texttt{table} & \texttt{id, name, host\_id, variant, max\_players, buy\_in, minimum\_bet, status} \\
+\texttt{table} & \texttt{id, name, host\_id, max\_players, buy\_in, minimum\_bet, status} \\
 \hline
 \texttt{table\_players} & \texttt{table\_id, user\_id, seat\_number, stack} \\
 \hline
@@ -176,26 +201,26 @@ All pages will have a mature red theme. On the gameplay page, a red oval in the 
 
 \vspace{0.5em}
 \noindent
-\includegraphics[width=0.49\textwidth]{Admin.png}\hfill
-\includegraphics[width=0.49\textwidth]{Bet.png}
+\includegraphics[width=0.49\textwidth]{interface/images/Admin.png}\hfill
+\includegraphics[width=0.49\textwidth]{interface/images/Bet.png}
 \vspace{0.5em}
 
 \noindent
-\includegraphics[width=0.49\textwidth]{Discard.png}\hfill
-\includegraphics[width=0.49\textwidth]{Leaderboard.png}
+\includegraphics[width=0.49\textwidth]{interface/images/Discard.png}\hfill
+\includegraphics[width=0.49\textwidth]{interface/images/Leaderboard.png}
 \vspace{0.5em}
 
 \noindent
-\includegraphics[width=0.49\textwidth]{Lobby.png}\hfill
-\includegraphics[width=0.49\textwidth]{New Table.png}
+\includegraphics[width=0.49\textwidth]{interface/images/Lobby.png}\hfill
+\includegraphics[width=0.49\textwidth]{interface/images/New Table.png}
 \vspace{0.5em}
 
 \noindent
-\includegraphics[width=0.49\textwidth]{Profile.png}\hfill
-\includegraphics[width=0.49\textwidth]{Showdown.png}
+\includegraphics[width=0.49\textwidth]{interface/images/Profile.png}\hfill
+\includegraphics[width=0.49\textwidth]{interface/images/Showdown.png}
 
 \vspace{0.5em}
-\includegraphics[width=1\textwidth]{UI Diagram.pdf}
+\includegraphics[width=1\textwidth]{interface/UI Diagram.pdf}
 \section{Iterations}
 
 \subsection{Iteration Planning}
@@ -236,11 +261,14 @@ Figure~\ref{fig:test1} shows the test coverage
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=\linewidth]{figures/placeholder.png}
+  \IfFileExists{figures/placeholder.png}{%
+    \includegraphics[width=\linewidth]{figures/placeholder.png}%
+  }{
+    \framebox[\linewidth]{\rule{0pt}{3cm} figures/placeholder.png}%
+  }
   \caption{Iteration 1 test coverage report}
   \label{fig:test1}
 \end{figure}
-
 \subsubsection{Retroespective \& Reflection}
 [What were the pitfalls, challenges, and issues you had in this iteration? How can you address them to improve the process in the next iteration? Did anything not go according to plan? Why so and how to avoid the same mistake? Write a personal reflection on what you learned in this iteration (even if a small technical thing like Database storage).]
 
