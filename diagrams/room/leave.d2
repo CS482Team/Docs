@@ -15,16 +15,16 @@ TDAO: TableDAO
 IO: Socket service
 
 Host.a -> Router.a: Leave room
-Router.a -> Ctrl.a: leaveTable
-Ctrl.a -> PDAO.a: removePlayer
+Router.a -> Ctrl.a: leaveTable()
+Ctrl.a -> PDAO.a: removePlayer()
 PDAO.a -> Ctrl.a: stack
-Ctrl.a -> UDAO.a: getBalance / setBalance(+stack)
+Ctrl.a -> UDAO.a: getBalance() / setBalance(+stack)
 UDAO.a -> Ctrl.a: done
 Ctrl.a -> LDAO.a: logBalanceChange(cash_out)
 LDAO.a -> Ctrl.a: done
-Ctrl.a -> PDAO.b: countPlayers
+Ctrl.a -> PDAO.b: countPlayers()
 PDAO.b -> Ctrl.a: count
-Ctrl.a -> TDAO.a: deleteTable (if empty)
+Ctrl.a -> TDAO.a: deleteTable() (if empty)
 TDAO.a -> Ctrl.a: done
 Ctrl.a -> IO.a: broadcastChange(id)
 Ctrl.a -> Host.a: 204

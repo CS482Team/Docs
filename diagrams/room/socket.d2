@@ -15,14 +15,14 @@ Lobby: Lobby
 Client.a -> IO.a: 'watch(tableId)'
 IO.a -> Room.a: socket.join(tableId)
 IO.a -> Client.a: ack
-Client.b -> IO.b: watchLobby
+Client.b -> IO.b: watchLobby()
 IO.b -> Lobby.a: socket.join(lobby)
 IO.b -> Client.b: ack
 Ctrl.a -> IO.c: broadcastChange(tableId)
 IO.c -> TDAO.a: getTable(tableId)
 TDAO.a -> IO.c: table
 IO.c -> Room.b: 'emit "table"'
-IO.c -> TDAO.b: getAllTables
+IO.c -> TDAO.b: getAllTables()
 TDAO.b -> IO.c: tables
 IO.c -> Lobby.b: 'emit "tables"'
 

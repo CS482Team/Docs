@@ -15,14 +15,14 @@ LDAO: BalanceLogDAO
 IO: Socket service
 
 Host.a -> Router.a: Join room
-Router.a -> Ctrl.a: joinTable
+Router.a -> Ctrl.a: joinTable()
 Ctrl.a -> TDAO.a: getTable(id)
 TDAO.a -> Ctrl.a: table + seats
 Ctrl.a -> Host.a: 404 / 409 (if rejected)
-Ctrl.a -> UDAO.a: getBalance
+Ctrl.a -> UDAO.a: getBalance()
 UDAO.a -> Ctrl.a: balance
 Ctrl.a -> Host.a: 409 (if rejected)
-Ctrl.a -> PDAO.a: addPlayer
+Ctrl.a -> PDAO.a: addPlayer()
 PDAO.a -> Ctrl.a: done
 Ctrl.a -> UDAO.b: setBalance(balance - buyIn)
 UDAO.b -> Ctrl.a: done
