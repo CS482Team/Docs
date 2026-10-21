@@ -1,0 +1,36 @@
+vars: {
+  d2-config: {
+    sketch: true
+  }
+}
+shape: sequence_diagram
+
+Host: User
+Router: tableRouter
+Ctrl: TableController
+TDAO: TableDAO
+PDAO: TablePlayersDAO
+UDAO: UserDAO
+LDAO: BalanceLogDAO
+IO: Socket service
+
+Host.a -> Router.a: Join room
+Router.a -> Ctrl.a: joinTable
+Ctrl.a -> TDAO.a: getTable(id)
+TDAO.a -> Ctrl.a: table + seats
+Ctrl.a -> Host.a: 404 / 409 (if rejected)
+Ctrl.a -> UDAO.a: getBalance
+UDAO.a -> Ctrl.a: balance
+Ctrl.a -> Host.a: 409 (if rejected)
+Ctrl.a -> PDAO.a: addPlayer
+PDAO.a -> Ctrl.a: done
+Ctrl.a -> UDAO.b: setBalance(balance - buyIn)
+UDAO.b -> Ctrl.a: done
+Ctrl.a -> LDAO.a: logBalanceChange(buy_in)
+LDAO.a -> Ctrl.a: done
+Ctrl.a -> IO.a: broadcastChange(id)
+Ctrl.a -> Host.a: 204
+
+*.style.font-size: 30
+(** -> **)[*].style.font-size: 26
+Host.shape: person

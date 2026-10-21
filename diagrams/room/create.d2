@@ -1,0 +1,29 @@
+vars: {
+  d2-config: {
+    sketch: true
+  }
+}
+shape: sequence_diagram
+
+Host: User
+Router: tableRouter
+Ctrl: TableController
+TDAO: TableDAO
+IO: Socket service
+Lobby: Lobby
+
+Host.a -> Router.a: Create room
+Router.a -> Ctrl.a: addTable
+Ctrl.a -> Host.a: 400 Invalid table (if invalid)
+Ctrl.a -> TDAO.a: createTable
+TDAO.a -> Ctrl.a: id
+Ctrl.a -> IO.a: broadcastChange(id)
+IO.a -> TDAO.b: getAllTables
+TDAO.b -> IO.a: tables
+IO.a -> Lobby.a: 'emit "tables"'
+Ctrl.a -> Host.a: '201 {id}'
+
+*.style.font-size: 30
+(** -> **)[*].style.font-size: 26
+Host.shape: person
+Lobby.shape: person
