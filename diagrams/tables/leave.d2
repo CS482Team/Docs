@@ -13,8 +13,10 @@ UDAO: UserDAO
 LDAO: BalanceLogDAO
 TDAO: TableDAO
 IO: Socket service
+GS: GameService
+Players: Players
 
-Host.a -> Router.a: Leave room
+Host.a -> Router.a: Leave table
 Router.a -> Ctrl.a: leaveTable()
 Ctrl.a -> PDAO.a: removePlayer()
 PDAO.a -> Ctrl.a: stack
@@ -22,13 +24,19 @@ Ctrl.a -> UDAO.a: getBalance() / setBalance(+stack)
 UDAO.a -> Ctrl.a: done
 Ctrl.a -> LDAO.a: logBalanceChange(cash_out)
 LDAO.a -> Ctrl.a: done
+Ctrl.a -> GS.a: endGame(id)
 Ctrl.a -> PDAO.b: countPlayers()
 PDAO.b -> Ctrl.a: count
 Ctrl.a -> TDAO.a: deleteTable() (if empty)
 TDAO.a -> Ctrl.a: done
 Ctrl.a -> IO.a: broadcastChange(id)
+Ctrl.a -> GS.b: startIfReady(id)
+GS.b -> Ctrl.a: player ids (if 2+ left)
+Ctrl.a -> IO.b: sendViews(id, ids)
+IO.b -> Players.a: 'emit "view"'
 Ctrl.a -> Host.a: 204
 
 *.style.font-size: 30
 (** -> **)[*].style.font-size: 26
 Host.shape: person
+Players.shape: person

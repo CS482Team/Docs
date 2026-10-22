@@ -13,8 +13,10 @@ PDAO: TablePlayersDAO
 UDAO: UserDAO
 LDAO: BalanceLogDAO
 IO: Socket service
+GS: GameService
+Players: Players
 
-Host.a -> Router.a: Join room
+Host.a -> Router.a: Join table
 Router.a -> Ctrl.a: joinTable()
 Ctrl.a -> TDAO.a: getTable(id)
 TDAO.a -> Ctrl.a: table + seats
@@ -29,8 +31,13 @@ UDAO.b -> Ctrl.a: done
 Ctrl.a -> LDAO.a: logBalanceChange(buy_in)
 LDAO.a -> Ctrl.a: done
 Ctrl.a -> IO.a: broadcastChange(id)
+Ctrl.a -> GS.a: startIfReady(id)
+GS.a -> Ctrl.a: player ids (if 2+ seated)
+Ctrl.a -> IO.b: sendViews(id, ids)
+IO.b -> Players.a: 'emit "view"'
 Ctrl.a -> Host.a: 204
 
 *.style.font-size: 30
 (** -> **)[*].style.font-size: 26
 Host.shape: person
+Players.shape: person

@@ -9,19 +9,25 @@ Client: Browser
 IO: Socket service
 Ctrl: TableController
 TDAO: TableDAO
-Room: Room
+Table: Table
+GS: GameService
 Lobby: Lobby
 
 Client.a -> IO.a: 'watch(tableId)'
-IO.a -> Room.a: socket.join(tableId)
+IO.a -> Table.a: socket.join(tableId)
 IO.a -> Client.a: ack
 Client.b -> IO.b: watchLobby()
 IO.b -> Lobby.a: socket.join(lobby)
 IO.b -> Client.b: ack
+Client.c -> IO.d: 'watchHand(tableId, userId)'
+IO.d -> Client.c: ack
+IO.d -> GS.a: getTableView(tableId, userId)
+GS.a -> IO.d: view
+IO.d -> Client.c: 'emit "view"'
 Ctrl.a -> IO.c: broadcastChange(tableId)
 IO.c -> TDAO.a: getTable(tableId)
 TDAO.a -> IO.c: table
-IO.c -> Room.b: 'emit "table"'
+IO.c -> Table.b: 'emit "table"'
 IO.c -> TDAO.b: getAllTables()
 TDAO.b -> IO.c: tables
 IO.c -> Lobby.b: 'emit "tables"'
@@ -29,5 +35,5 @@ IO.c -> Lobby.b: 'emit "tables"'
 *.style.font-size: 30
 (** -> **)[*].style.font-size: 26
 Client.shape: person
-Room.shape: person
+Table.shape: person
 Lobby.shape: person

@@ -12,7 +12,7 @@ TDAO: TableDAO
 IO: Socket service
 Lobby: Lobby
 
-Host.a -> Router.a: Create room
+Host.a -> Router.a: Create table
 Router.a -> Ctrl.a: addTable()
 Ctrl.a -> Host.a: 400 Invalid table (if invalid)
 Ctrl.a -> TDAO.a: createTable()
