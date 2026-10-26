@@ -4,7 +4,7 @@
 Dr. Olsen
 
 ### Group Members
-- Cyrus McCollim
-- Heloisa Albuquerque
-- Charles Humphreys
-- Sean Triplett
+- Cyrus McCollim (@cyrusmccollim)
+- Heloisa Albuquerque (@hralbuquerque)
+- Charles Humphreys (@CharleyHumphreys)
+- Sean Triplett (@seantriplett, @UnsaidMushroom)
