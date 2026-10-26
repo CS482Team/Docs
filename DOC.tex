@@ -226,9 +226,9 @@ All pages will have a mature red theme. On the gameplay page, a red oval in the 
 \subsection{Iteration Planning}
 %% Reminder **CS482**: Update your iteration planning at each sprint
 % Reminder: Comment out the bracketed instructions as you finish subsections
-[In CS496, you plan all iterations beforehand. In CS482, you update the planning here at each iteration. ]\\
+% # [In CS496, you plan all iterations beforehand. In CS482, you update the planning here at each iteration. ]\\
 
-Table~\ref{tab:it-planning} shows the iteration planning.
+% Table~\ref{tab:it-planning} shows the iteration planning.
 
 \begin{table}[h!]
 \centering
@@ -239,40 +239,59 @@ Table~\ref{tab:it-planning} shows the iteration planning.
 \hline
 1 & 10/07 - 10/26 & S1 Game Initialization, S2 Game Betting, S3 Game Card Draw, S4 Game Ending, S6 Sign Up, S7 Sign In/Sign Out, S9 Guest Player, S12 Room Creation, S14 Room Joining & 16 & 16\\ \hline
 \hline
-\multicolumn{3}{r}{\bf Total: } &15 & 15 \\ \hline
+\multicolumn{3}{r}{\bf Total: } &16 & 16 \\ \hline
 \end{tabular}
 \caption{Iteration Planning for Incremental Deliveries}\label{tab:it-planning}
 \end{table}
 
 \subsection{Iteration/Sprint 1}
 \subsubsection{Planning}
-Before the sprint, we had a meeting to discuss who would prefer to work on each part of the assignment based on each member's interests and our system design. Charles took Game Initialization and Game Betting, Sean took Game Card Draw and Game Ending, Heloisa took Sign Up, Sign In/Sign Out, and Guest Player, and Cyrus took on Room Creation and Rooms, giving each member 4 story points.
+We had a meeting to discuss who would prefer to work on each part of the assignment based on each member's interests and the story priorities. Our goal is to keep within a reasonable scope for our first iteration while also getting the more core features out of the way first. 
 
-We wanted to keep within a reasonable scope for our first iteration, so we decided that it would be good to create a structured base for us to build upon in future iterations. The 3 main features we want to focus on are the game engine(dealing, betting, drawing, and determining a winner) rooms (creation and joining), and accounts(sign up, sign in/out, and guest access). Almost every future story we have planned such as chat, friends, the leaderboard, and bots all depend on the players being able to log in, join a room and play a hand so these features are higher priorty.
+The 3 main features we wanted to focus on were the game engine (dealing, betting, drawing, and determining a winner), rooms (creation and joining), and accounts (sign up, sign in/out, and guest access). Charles took Game Initialization and Game Betting, Sean took Game Card Draw and Game Ending, Heloisa took Sign Up, Sign In/Sign Out, and Guest Player, and Cyrus took on Room Creation and Rooms, giving each member at least 4 story points. Almost every other future story we have planned, such as chat, friends, the leaderboard, and bots, depends on players being able to log in, join a room, and play a hand, so these features are higher priority.
 
-Overall,  we plan on completing 16 story points between 4 members and 3 feature areas. We will start by building individual modules for front-end and backend features, following our design plans and MVC structure. We will then integrate our modules starting from the base game.
-
+Overall, we plan on completing 16 story points between 4 members and 3 feature areas. We will start by building individual modules for frontend and backend features, following our design plans. We will then integrate our modules as we work through the sprint.
 
 \subsubsection{Work Done}
-[Which stories did you complete in this iteration/sprint. Which ones did you partially complete? Who worked on which story? You may elaborate in paragraph(s) to add more detail about the work done.]
+Charles completed Game Initialization and Game Betting. Players put in their antes, get dealt 5 cards, and can check, call, bet/raise, or fold during a betting round. Buy-ins are not taken from a real balance yet, since there is no account or currency logic connected.
+
+Sean completed Game Card Draw and Game Ending. Players can pick 0 to 5 cards to discard and get new ones from the deck, and there is a button for it in the UI. At the end of a hand, all hands are compared with a hand evaluator, ties split the pot, and the winner is shown on screen. It also handles players leaving in the middle of a hand. Winnings are not paid out to a real balance yet, since there is no account or currency logic connected.
+
+Cyrus completed Room Creation and Room Joining. Players can create a table with configured settings, see a list of open tables in the lobby, and join or leave a table, with updates sent to everyone at the table. Once enough players join a table, a hand starts on its own. For now, there is dropdown to switch between which fake user account you are acting as.
+
+Heloisa completed Sign Up, Sign In/Sign Out, and Guest Player. Users can create an account, sign in and out, or play as a guest. And new accounts and guests get a row in our user database table. Accounts are not wired to gameplay or rooms just yet.
 
 \subsubsection{Testing Coverage}
-[Testing is very important. Show your coverage here. Is this coverage good enough? Explain why you think so. Is it not good enough? Explain a plan to increase the coverage. You may also elaborate on why some artifacts do not undergo much testing. If the testing changed from the last iteration, explain the reasons.]
+We think our coverage is decent for a first sprint. The backend is at about 93\% lines across 150+ tests, and the frontend is at about 84\% lines across 46 tests. And all tests pass. The parts that matter most are the parts we tested the most: the game phases (betting, dealing, drawing, turns, and ending a hand), which are near 100\%. What was also important were the DAOs, the routers, and the socket code.
 
-Figure~\ref{fig:test1} shows the test coverage 
+Most of the missing coverage comes from code that is not hooked up yet. Sign up and sign in work through our database, but they are not connected to rooms or the game yet, so some of those are at 0\%. Those files are going to change considerably once we connect accounts to things next sprint so there is little need to have tests for them at this moment.
 
-\begin{figure}[!ht]
+We would like to improve \texttt{GameService.ts} the most, since the draw phase is tested in \texttt{Drawer.ts} but not through the service itself. But overall as long as the game logic and the data layer are solid we are happy. Our plan going forward is to add tests for the auth flow and to keep new features at around the same coverage as now.
+
+\begin{figure}[H]
   \centering
-  \IfFileExists{figures/placeholder.png}{%
-    \includegraphics[width=\linewidth]{figures/placeholder.png}%
-  }{
-    \framebox[\linewidth]{\rule{0pt}{3cm} figures/placeholder.png}%
-  }
-  \caption{Iteration 1 test coverage report}
-  \label{fig:test1}
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{coverage/sprint-1/frontend.png}
+    \caption{Frontend}
+    \label{fig:cov1-frontend}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{coverage/sprint-1/backend.png}
+    \caption{Backend}
+    \label{fig:cov1-backend}
+  \end{subfigure}
+  \caption{Sprint 1 Test Coverage}
+  \label{fig:cov1}
 \end{figure}
-\subsubsection{Retroespective \& Reflection}
-The main issue we had with this iteration was getting everything set up with the massive time constraints of out group members. All of us were going through midterms, with one of us also having tech week for a play (as well as the actual run of the play itself) on top of that. However, through good communication and meeting to figure out these problems, we were able to sort out the workload. Another problem was working to set up the front end, which required a fair amount of agent usage to understand. The time constraints we faced, along with the complexity of front end, meant we did not completely finish all of the details of the stories we had hoped to, but we managed to get the most important parts done. Something I learned in this sprint was how hard it was to connect the front end of a project to the back end, especially without knowing how to write a front end prior.
+
+\subsubsection{Retrospective \& Reflection}
+The main issue in this iteration was that we had no foundation to build on. We had to start working on our own features without any shared context or established way of doing things, so it was really messy figuring things out. This led to a lot of duplicate functionality, and it didn't help that the stories had at least some dependence on each other in order to become ready to showcase. Over time we pulled things from each other's branches and slowly built some common ground for the project structure.
+
+Another issue was getting everything set up under the tight schedules of our group members. All of us were going through midterms, and one of us was also preparing for a theatre production at Loyola for a big chunk of the sprint. However, by communicating well and meeting to work through these problems, we were able to sort out the workload. Setting up the front end was another challenge, and it took a fair amount of struggle, googling, and agent help to understand it. Between the time constraints and complexity of the stories, we didn't perfect every detail of the stories, but we think we got the most important parts done.
+
+Something we all learned this sprint was how hard it is to conceptualize how the frontend and backend work together, especially since most of us had little to no experience building interfaces or calling external APIs. We also learned a lot about TypeScript syntax, like using our own types for things like legal game actions. Learning how to use Socket.IO was a fun part of the sprint, since it was an elegant alternative to the plain WebSockets that some of us are used to. Lastly, we learned how to use MVC properly by keeping each layer separate with its own responsibilities.
 
 \subsection{Iteration/Sprint 2}
 \subsubsection{Planning}
@@ -284,7 +303,7 @@ The main issue we had with this iteration was getting everything set up with the
 \subsubsection{Testing Coverage}
 [Testing is very important. Show your coverage here. Is this coverage good enough? Explain why you think so. Is it not good enough? Explain a plan to increase the coverage. You may also elaborate on why some artifacts do not undergo much testing. If the testing changed from the last iteration, explain the reasons.]
 
-\subsubsection{Retroespective \& Reflection}
+\subsubsection{Retrospective \& Reflection}
 [What were the pitfalls, challenges, and issues you had in this iteration? How can you address them to improve the process in the next iteration? Did anything not go according to plan? Why so and how to avoid the same mistake? Write a personal reflection on what you learned in this iteration (even if a small technical thing like Database storage).]
 
 \subsection{Iteration/Sprint 3}
@@ -297,7 +316,7 @@ The main issue we had with this iteration was getting everything set up with the
 \subsubsection{Testing Coverage}
 [Testing is very important. Show your coverage here. Is this coverage good enough? Explain why you think so. Is it not good enough? Explain a plan to increase the coverage. You may also elaborate on why some artifacts do not undergo much testing. If the testing changed from the last iteration, explain the reasons.]
 
-\subsubsection{Retroespective \& Reflection}
+\subsubsection{Retrospective \& Reflection}
 [What were the pitfalls, challenges, and issues you had in this iteration? How can you address them to improve the process in the next iteration? Did anything not go according to plan? Why so and how to avoid the same mistake? Write a personal reflection on what you learned in this iteration (even if a small technical thing like Database storage).]
 
 \subsection{Iteration/Sprint 4}
@@ -312,7 +331,7 @@ The main issue we had with this iteration was getting everything set up with the
 \subsubsection{Testing Coverage}
 [Testing is very important. Show your coverage here. Is this coverage good enough? Explain why you think so. Is it not good enough? Explain a plan to increase the coverage. You may also elaborate on why some artifacts do not undergo much testing. If the testing changed from the last iteration, explain the reasons.]
 
-\subsubsection{Retroespective \& Reflection}
+\subsubsection{Retrospective \& Reflection}
 [What were the pitfalls, challenges, and issues you had in this iteration? How can you address them to improve the process in the next iteration? Did anything not go according to plan? Why so and how to avoid the same mistake? Write a personal reflection on what you learned in this iteration (even if a small technical thing like Database storage).]
 
 \subsection{Iteration/Sprint 5}
@@ -325,7 +344,7 @@ The main issue we had with this iteration was getting everything set up with the
 \subsubsection{Testing Coverage}
 [Testing is very important. Show your coverage here. Is this coverage good enough? Explain why you think so. Is it not good enough? Explain a plan to increase the coverage. You may also elaborate on why some artifacts do not undergo much testing. If the testing changed from the last iteration, explain the reasons.]
 
-\subsubsection{Retroespective \& Reflection}
+\subsubsection{Retrospective \& Reflection}
 [What were the pitfalls, challenges, and issues you had in this iteration? How can you address them to improve the process in the next iteration? Did anything not go according to plan? Why so and how to avoid the same mistake? Write a personal reflection on what you learned in this iteration (even if a small technical thing like Database storage).]
 
 \section{Final Remarks}
