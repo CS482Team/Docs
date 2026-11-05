@@ -31,9 +31,9 @@ for f in diagrams/*/*.d2; do d2 "$f" "${f%.d2}.png"; done
 ```
 
 ## Running Docker
-1. Install Docker and leave it open in the background (no sign up or extra steps needed)
-2. Run `npx supabase start` and copy the key starting with `sb_secret_`
-3. Run `scripts/demo.sh` OR `npm run dev` in both the frontend and backend directories (two terminals).
+1. Install Docker and leave it open in the background (skip sign up, no extra steps needed)
+2. Run `npx supabase start` in `/backend` and copy the key starting with `sb_secret_`
+3. Run `scripts/demo.sh` OR: run `npm run dev` in both the `/frontend` and `/backend` (one terminal each)
 4. Set the following in the `.env` files:
 
 Backend
