@@ -130,8 +130,15 @@ S29 & Advertisements & 1 & As a/an Admin, I want to create ads, so that players 
 We will use the MVC architecture to structure this application. Two servers will be hosted for the frontend and backend respectively. The frontend will serve the HTML/CSS/JS which includes graphics, menus, buttons, animations, and interface logic. The backend will be the source of truth by validating requests, updating game states, and interacting with the database. This should help with persistent data and real-time multiplayer interactions. The backend separates the game engine from the network and database layers to ensure that the card mechanics for 5-card poker can be unit tested. The main modular components for the application include Auth, Player, Profile, Friends, Admin, Lobby, Room, Chat, Game State, Hand Evaluator, Bot, Wallet, Shop, History, Leaderboard, Ads, and Events.
 
 \subsection{Diagrams}
-[CS482, on sprints/iterations 2-3, you need to create and update a diagram (check Iteration 2-3 assignment for which type of diagram). On CS496, since before sprint/iteration 1, you should have a class diagram and keep it up-to-date. In CS496, if your class diagram changes at each sprint, then create a Class Diagram subsection for the sprints, and show the changes; while keeping the one here the most up-to-date version. ]
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{diagrams/tables/Iteration2Diagram.png}
+   \caption{Frontend}
+    \label{fig:gameplay-sequence}
+ \end{subfigure}\hfill
 
+Figure~/ref{fig:gameplay-sequence} shows one multiplayer scenario. The player whose turn it is takes a betting action (call). The browser then sends the action to the server as an asynchronous HTTP request. The \textbf{GameController} validates the request and passes it to the \textbf{GameService}, which loads the game from the in-memory \textbf{GameDAO} and asks the \textbf{Betting} to apply it. The server is authoritative, so it rejects an action that is taken out of turn or not allowed, and the player sees the error. When an action is accepted, the new state is saved, and it ends the betting /textbf{Ender} scores the hand and pays out the pot. Every player recieves their own updated view of the table over socket.io (asynchronous messages), so no player is ever sent another player's cards. The loop repeats with the next player until the betting round is over. The database is not shown because a betting turn does not use it and the running game lives in memory on the server.
+ 
 \subsection{Technology}
 For our programming language, we chose \textbf{TypeScript} for both the front and back end because of its strict type enforcement makes unit testing and error checking easier. For our front end, we will use \textbf{React} bootstrapped with \textbf{Next.js} (written in TypeScript) for our UI, which has built-in file-based routing. For our backend, we will use \textbf{Node.js} with \textbf{Express} and a \textbf{REST API} for accounts, friends, tables, and adverts compiled from typescript. 
 For real-time communication, we will use \textbf{Socket.IO} to manage live gameplay updates. Each poker table is a room, and Socket.IO’s built-in reconnection handles dropped players. It also comes shipped with its own TypeScript types. 
