@@ -132,7 +132,7 @@ We will use the MVC architecture to structure this application. Two servers will
 \subsection{Diagrams}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\linewidth]{Iteration2Diagram.png}
+  \includegraphics[width=\linewidth]{diagrams/game/bet.png}
   \caption{Sequence diagram of a multiplayer betting turn in 5 Card Draw.}
   \label{fig:gameplay-sequence}
 \end{figure}
@@ -246,8 +246,9 @@ All pages will have a mature red theme. On the gameplay page, a red oval in the 
 \textbf{It.} & \textbf{Dates} & \textbf{Stories} & \textbf{Planned} & \textbf{Done} \\
 \hline
 1 & 10/07 - 10/26 & S1 Game Initialization, S2 Game Betting, S3 Game Card Draw, S4 Game Ending, S6 Sign Up, S7 Sign In/Sign Out, S9 Guest Player, S12 Room Creation, S14 Room Joining & 16 & 16\\ \hline
+2 & 10/27 - 11/05 & S5 Bot Play, S10 View Balance, S11 View My History, S13 Room Settings, S15 Chat Feature, S17 Advertisements (Player), S25 View All Profiles, S29 Advertisements (Admin) & 20 & 20\\ \hline
 \hline
-\multicolumn{3}{r}{\bf Total: } &16 & 16 \\ \hline
+\multicolumn{3}{r}{\bf Total: } &36 & 36 \\ \hline
 \end{tabular}
 \caption{Iteration Planning for Incremental Deliveries}\label{tab:it-planning}
 \end{table}
@@ -303,44 +304,55 @@ Something we all learned this sprint was how hard it is to conceptualize how the
 
 \subsection{Iteration/Sprint 2}
 \subsubsection{Planning}
-[Which stories did you plan for this iteration/sprint. Add the total points for this plan. You can also explain the reason behind your planning, and what major feature(s) your team is focusing on delivering by completing these stories. You may use a table for a summary display of the planning, but elaborate in text more detail in your focus and feature plan.]
+In this iteration, we focused on building out features for both players and admins so that we are able to increase the functionality of the application. The core features we wanted to work on were advertisements (both admin and player side), bot play, chat, viewing balance and history, and room settings.
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{c l p{7cm} c c}
-\hline
- & & & \multicolumn{2}{c}{\bf Points }  \\
-\textbf{It.} & \textbf{Dates} & \textbf{Stories} & \textbf{Planned} & \textbf{Done} \\
-\hline
-2 & 10/27 - 11/05 & S5 Bot play, S10 View Balance, S11 View My History, S13 Room Settings, S15 Chat Feature, S17 Adverstisments(Player), S29 Advertisements(Admin), S25 View All Profiles\\ \hline
-\hline
-\multicolumn{3}{r}{\bf Total: } &15 & 20 \\ \hline
-\end{tabular}
-\caption{Iteration Planning for Incremental Deliveries}\label{tab:it-planning}
-\end{table}
+Charles took Chat Feature, Sean took Bot Play, Cyrus took Advertisements (Player), Advertisements (Admin), and View All Profiles, and Heloisa took Room Settings, View My History, and View Balance, giving each member at least 4 story points.
+
+Overall, we planned on completing 20 story points between 4 members.
 
 \subsubsection{Work Done}
-[Which stories did you complete in this iteration/sprint. Which ones did you partially complete? Who worked on which story? You may elaborate in paragraph(s) to add more detail about the work done.]
+Charles completed Chat Feature. Each table now has a live chat, and messages are sent over Socket.IO and saved to the database so that recent messages load when a player opens the table. Charles also improved the table's look, adding card animations and a highlight on whose turn it is. 
 
-In this iteration, we focused on building out features for both players and Admin so that we are able to increase the functionality of the application. The core features we worked on this iteration were Advertisements(Both admin and player side), Bot Play, Chat Feature, Viewing (Balance+History), and Room Settings.
+Sean completed Bot Play. Bots can now be added to the game, and they automatically draw, discard, and bet. The bots use a ``happiness'' value to determine how much they want to bet. They also have a chance of ``bluffing,'' which makes them more confident in calling and changes their discarding patterns slightly.
 
+Cyrus completed Advertisements (Player), Advertisements (Admin), and View All Profiles. Admins can create ads, and active ads show up in a banner. Players can watch an ad and have its reward added to their balance. Admins can also search to see each player's balance, hands played, net result, and game history.
 
-\textbf{Adverts and View All Profiles (S7, S29, S25) Cyrus}
-
-\textbf{Room settings, View History, and View Balance (S10, S11, S13) Heloisa}
-
-\textbf{Bot play (S5) Sean} - Bots can now be added the game who automatically draw, discard, and bet. The bots use an algorithm of a "happiness" value to determine how much they want to bet. They also have a chance of "bluffing," which makes them more confident in calling and change their patterns of discarding slightly.
-
-\textbf{Chat feature (S15) Charles} Each table now has a live chat, and messages are sent over socket.io and saved to the database so that recent messages upload when a player opens the table. Only the seated players can send messages, and there are quick chat buttons, player avatars, and messages when someone joins or leaves the table. Charles also improved the table's look, adding card animations, a highlight on whose turn it is, and messages when someone joins or leaves the table. Approximately 7 hours total this iteration, along with side work.
+Heloisa completed Room Settings, View My History, and View Balance. Players can now see their balance in the nav bar. They can also change a room's settings, like the room name, the number of bots, and turning chat and the turn timer on or off. Players can also look back at their past games to see how they have done over time.
 
 \subsubsection{Testing Coverage}
-[Testing is very important. Show your coverage here. Is this coverage good enough? Explain why you think so. Is it not good enough? Explain a plan to increase the coverage. You may also elaborate on why some artifacts do not undergo much testing. If the testing changed from the last iteration, explain the reasons.]
+The backend is at about \textbf{XX}\% lines across \textbf{XX} tests, and the frontend is at about \textbf{XX}\% lines across \textbf{XX} tests. Every new feature this sprint came with its own tests, like the ad, admin, chat, and bot tests.
+
+The biggest change in testing from last iteration is that we moved our tests out of the separate test folders and next to the files they test. This makes it easier to see which files have tests and which ones don't.
+
+Our plan going forward is the same as last sprint, which is to keep new features at around the same coverage and to add more tests for the auth flow.
+
+% Change \covtworeadyfalse to \covtworeadytrue once coverage/sprint-2/*.png are added
+\newif\ifcovtwoready
+\covtworeadyfalse
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \ifcovtwoready\includegraphics[width=\linewidth]{coverage/sprint-2/frontend.png}\else\framebox[\linewidth]{\rule{0pt}{3cm}Frontend coverage}\fi
+    \caption{Frontend}
+    \label{fig:cov2-frontend}
+  \end{subfigure}\hfill
+  \begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \ifcovtwoready\includegraphics[width=\linewidth]{coverage/sprint-2/backend.png}\else\framebox[\linewidth]{\rule{0pt}{3cm}Backend coverage}\fi
+    \caption{Backend}
+    \label{fig:cov2-backend}
+  \end{subfigure}
+  \caption{Sprint 2 Test Coverage}
+  \label{fig:cov2}
+\end{figure}
 
 \subsubsection{Retrospective \& Reflection}
+This sprint was challenging for our group due to the proximity to exams and Halloween, as well as each of us handling our own uniquely busy schedules, but we still managed to communicate well and make a lot of progress on our app. One issue that occurred was overlapping files in the work done by Charles and Cyrus with some of the UI and overall design. However, we fixed this through communication and merging.
 
-This sprint was challenging for our group due to proximity to Halloween as well as each of us handling our own uniquely busy schedules, but we still managed to communicate well and make a lot of progress on our application. During this iteration, working with chat was fun because it allowed us to learn more about and test real-time features. Along with this, it was also interesting making decisions for chat features and storage, as well as setting up rate limits, as we could see how this process could grow much more complex on a larger scale(say, Discord). One issue that occurred, although minor, was overlapping files in work done by Charles and Cyrus with some UI and overall design; however, we fixed this through communication and merging. It was also really cool to see our game take shape during this iteration, as we built our product. Before, the game felt somewhat simple, but now it feels like we all have our own personal touches on the project, which has been a rewarding part of the process. One of the coolest features that we're excited to work further with in this iteration is Bot Play, as this will allow us to play the game more ourselves in our free time and also have our friends test it. 
+During this iteration, working with chat was fun because it allowed us to learn more about and test real-time features. Along with this, it was also interesting making decisions for chat features and storage, as well as setting up rate limits, as we could see how this process could grow much more complex on a larger scale.
 
-[What were the pitfalls, challenges, and issues you had in this iteration? How can you address them to improve the process in the next iteration? Did anything not go according to plan? Why so and how to avoid the same mistake? Write a personal reflection on what you learned in this iteration (even if a small technical thing like Database storage).]
+It was also really cool to see our game take shape during this iteration. Before, the game felt somewhat simple, but now it feels like we all have our own personal touches on the project, which has been a rewarding part of the process. One of the coolest features that we're excited to have is Bot Players, as this will allow us to play the game more ourselves in our free time and also have it be user tested easily.
 
 \subsection{Iteration/Sprint 3}
 \subsubsection{Planning}
