@@ -132,12 +132,13 @@ We will use the MVC architecture to structure this application. Two servers will
 \subsection{Diagrams}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\linewidth]{diagrams/tables/Iteration2Diagram.png}
-   \caption{Frontend}
-    \label{fig:gameplay-sequence}
- \end{subfigure}\hfill
+  \includegraphics[width=\linewidth]{Iteration2Diagram.png}
+  \caption{Sequence diagram of a multiplayer betting turn in 5 Card Draw.}
+  \label{fig:gameplay-sequence}
+\end{figure}
 
-Figure~/ref{fig:gameplay-sequence} shows one multiplayer scenario. The player whose turn it is takes a betting action (call). The browser then sends the action to the server as an asynchronous HTTP request. The \textbf{GameController} validates the request and passes it to the \textbf{GameService}, which loads the game from the in-memory \textbf{GameDAO} and asks the \textbf{Betting} to apply it. The server is authoritative, so it rejects an action that is taken out of turn or not allowed, and the player sees the error. When an action is accepted, the new state is saved, and it ends the betting /textbf{Ender} scores the hand and pays out the pot. Every player recieves their own updated view of the table over socket.io (asynchronous messages), so no player is ever sent another player's cards. The loop repeats with the next player until the betting round is over. The database is not shown because a betting turn does not use it and the running game lives in memory on the server.
+
+Figure~\ref{fig:gameplay-sequence} shows one multiplayer scenario. The player whose turn it is takes a betting action (call). The browser then sends the action to the server as an asynchronous HTTP request. The \textbf{GameController} validates the request and passes it to the \textbf{GameService}, which loads the game from the in-memory \textbf{GameDAO} and asks the \textbf{Betting} to apply it. The server is authoritative, so it rejects an action that is taken out of turn or not allowed, and the player sees the error. When an action is accepted, the new state is saved, and it ends the betting /textbf{Ender} scores the hand and pays out the pot. Every player recieves their own updated view of the table over socket.io (asynchronous messages), so no player is ever sent another player's cards. The loop repeats with the next player until the betting round is over. The database is not shown because a betting turn does not use it and the running game lives in memory on the server.
  
 \subsection{Technology}
 For our programming language, we chose \textbf{TypeScript} for both the front and back end because of its strict type enforcement makes unit testing and error checking easier. For our front end, we will use \textbf{React} bootstrapped with \textbf{Next.js} (written in TypeScript) for our UI, which has built-in file-based routing. For our backend, we will use \textbf{Node.js} with \textbf{Express} and a \textbf{REST API} for accounts, friends, tables, and adverts compiled from typescript. 
