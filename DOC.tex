@@ -305,8 +305,33 @@ Something we all learned this sprint was how hard it is to conceptualize how the
 \subsubsection{Planning}
 [Which stories did you plan for this iteration/sprint. Add the total points for this plan. You can also explain the reason behind your planning, and what major feature(s) your team is focusing on delivering by completing these stories. You may use a table for a summary display of the planning, but elaborate in text more detail in your focus and feature plan.]
 
+\begin{table}[h!]
+\centering
+\begin{tabular}{c l p{7cm} c c}
+\hline
+ & & & \multicolumn{2}{c}{\bf Points }  \\
+\textbf{It.} & \textbf{Dates} & \textbf{Stories} & \textbf{Planned} & \textbf{Done} \\
+\hline
+2 & 10/27 - 11/05 & S5 Bot play, S10 View Balance, S11 View My History, S13 Room Settings, S15 Chat Feature, S17 Adverstisments(Player), S29 Advertisements(Admin), S25 View All Profiles\\ \hline
+\hline
+\multicolumn{3}{r}{\bf Total: } &15 & 20 \\ \hline
+\end{tabular}
+\caption{Iteration Planning for Incremental Deliveries}\label{tab:it-planning}
+\end{table}
+
 \subsubsection{Work Done}
 [Which stories did you complete in this iteration/sprint. Which ones did you partially complete? Who worked on which story? You may elaborate in paragraph(s) to add more detail about the work done.]
+
+In this iteration, we focused on building out features for both players and Admin so that we are able to increase the functionality of the application. The core features we worked on this iteration were Advertisements(Both admin and player side), Bot Play, Chat Feature, Viewing (Balance+History), and Room Settings.
+
+
+\textbf{Adverts and View All Profiles (S7, S29, S25) Cyrus}
+
+\textbf{Room settings, View History, and View Balance (S10, S11, S13) Heloisa}
+
+\textbf(Bot play (S5) Sean)
+
+\textbf{Chat feature (S15) Charles} Each table now has a live chat, and messages are sent over socket.io and saved to the database so that recent messages upload when a player opens the table. Only the seated players can send messages, and there are quick chat buttons, player avatars, and messages when someone joins or leaves the table. Charles also improved the table's look, adding card animations, a highlight on whose turn it is, and messages when someone joins or leaves the table. Approximately 7 hours total this iteration, along with side work.
 
 \subsubsection{Testing Coverage}
 [Testing is very important. Show your coverage here. Is this coverage good enough? Explain why you think so. Is it not good enough? Explain a plan to increase the coverage. You may also elaborate on why some artifacts do not undergo much testing. If the testing changed from the last iteration, explain the reasons.]
